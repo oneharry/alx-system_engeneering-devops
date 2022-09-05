@@ -1,2 +1,0 @@
-#!/bin/bash
-cat input | tr A Z | tr c e
