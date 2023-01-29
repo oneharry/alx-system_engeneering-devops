@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Displays number from 1 to 20 using case statement
+# displays 4 and "bad luck from China" at pos 4
+# displays 9 and "bad luck from Japan" at pos 9
+# displays 19 and "bad luck from Italy" at pos 17
+i=1
+while ((i<21))
+do
+    case $i in
+        4)
+	    echo "$i"
+	    echo "bad luck from China"
+	    ;;
+	9)
+	    echo "$i"
+	    echo "bad luck from Japan"
+	    ;;
+	17)
+	    echo "$i"
+	    echo "bad luck from Italy"
+	    ;;
+	*)
+	    echo "$i"
+	    ;;
+    esac
+    ((i++))
+done
