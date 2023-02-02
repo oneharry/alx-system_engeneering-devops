@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
 # Pings (using ICMP) an IP address passed as arg
 # displays "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}" when arg is null
-if ["$1"]
+if [ $# -eq 0 ]
 then
-    for ((i=0; i<5; i++))
-    do
-        ping "$1"
-    done
-else
     echo "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
+else
+        ping -c 5 "$1"
 fi
