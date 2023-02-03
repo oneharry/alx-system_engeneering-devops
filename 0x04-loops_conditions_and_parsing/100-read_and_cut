@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Displays the username, user id and home directory path of the /etc/passwd file
+file="/etc/passwd"
+while read -r line 
+do
+    a="$(echo "$line" | cut -d':' -f1)"
+    b="$(echo "$line" | cut -d':' -f3)"
+    c="$(echo "$line" | cut -d':' -f6)"
+    echo "$a:$b:$c"
+done <$file
