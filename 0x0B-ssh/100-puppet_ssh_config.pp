@@ -1,6 +1,6 @@
 # Make changes to ssh client config file
-file {'2-ssh_config':
+file {'school':
     ensure  => 'present',
-    path    => '/home/vagrant/alx-system_engineering-devops/0x0B-ssh/2-ssh_config',
+    path    => '/tmp/school',
     content => 'Host *\n\tIdentityFile /home/vagrant/.ssh/school\n\tPasswordAuthentication no\n';
 }
