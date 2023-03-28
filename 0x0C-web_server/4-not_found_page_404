@@ -24,4 +24,4 @@ echo "server {
 		rewrite ^(.*)$ 404_error.html last;
 	}
 }" > /etc/nginx/sites-available/default
-service nginx restart
+sudo service nginx restart
