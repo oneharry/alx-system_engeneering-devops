@@ -10,7 +10,7 @@ file { '/var/www/root':
 
 file {'index.html':
     ensure  => 'present',
-    path    => '/var/www/root',
+    path    => '/var/www/root/index.html',
     content => 'Hello World!',
     owner   => 'root',
     mode    => '0755',
