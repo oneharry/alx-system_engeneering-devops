@@ -15,10 +15,9 @@ echo "server {
 	index index.html index.htm;
 	server_name /;
 	rewrite ^/redrirect_me http://www.intranet.com permanent;
-	error_page 404 custom_error.html
-	location / {
-		root /var/www/root;
-                internal;
+	location @Ceci n'est pas une page {
+		default_type text/html
+                return 404 '<h1> Ceci n'est pas une page</h1>'
 	}
 }" > /etc/nginx/sites-available/default
 service nginx restart
