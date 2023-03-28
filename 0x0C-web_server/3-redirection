@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Redirects yo another page
+
+sudo apt-get update
+sudo apt-get install -y nginx
+
+mkdir -p /var/www/root
+echo "Hello World!" > /var/www/root/index.html
+
+echo "server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	root /var/www/root;
+	index index.html index.htm;
+	server_name /;
+	rewrite ^/redrirect_me http://www.intranet.com
+}" > /etc/nginx/sites-available/default
+service nginx restart
