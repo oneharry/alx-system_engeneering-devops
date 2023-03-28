@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# to have a 404 pagewith twxt
+
+sudo apt-get update
+sudo apt-get install -y nginx
+
+mkdir -p /var/www/root
+echo "Hello World!" > /var/www/root/index.html
+echo "Ceci n'est pas une page" > /var/www/root/custom_error.html
+
+echo "server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+	root /var/www/root;
+	index index.html index.htm;
+	server_name /;
+	rewrite ^/redrirect_me http://www.intranet.com permanent;
+	error_page 404 custom_error.html
+	location / {
+		root /var/www/root;
+                internal;
+	}
+}" > /etc/nginx/sites-available/default
+service nginx restart
