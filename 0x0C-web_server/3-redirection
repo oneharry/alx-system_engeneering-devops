@@ -12,7 +12,9 @@ echo "server {
 	listen [::]:80 default_server;
 	root /var/www/root;
 	index index.html index.htm;
-	server_name /;
-	rewrite ^/redrirect_me http://www.intranet.com permanent;
+
+	location /redirect_me {
+		return 301 http://test.com;
+	}
 }" > /etc/nginx/sites-available/default
 service nginx restart

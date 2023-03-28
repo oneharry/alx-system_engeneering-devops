@@ -6,18 +6,22 @@ sudo apt-get install -y nginx
 
 mkdir -p /var/www/root
 echo "Hello World!" > /var/www/root/index.html
-echo "Ceci n'est pas une page" > /var/www/root/custom_error.html
+echo "Ceci n'est pas une page" > /var/www/root/404_error.html
 
 echo "server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
 	root /var/www/root;
 	index index.html index.htm;
-	server_name /;
-	rewrite ^/redrirect_me http://www.intranet.com permanent;
-	location @Ceci n'est pas une page {
-		default_type text/html
-                return 404 '<h1> Ceci n'est pas une page</h1>'
+	
+	location /redirect_me {
+		return 301 http://test.com;
+	}
+
+	location /404 {
+		internal;
+		root /var/www/root;
+		rewrite ^(.*)$ 404_error.html last;
 	}
 }" > /etc/nginx/sites-available/default
 service nginx restart
