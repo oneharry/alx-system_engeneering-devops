@@ -4,14 +4,14 @@
 
 sudo apt update
 sudo apt -y install nginx
-mkdir -p /etc/www/html
+mkdir -p /etc/html
 echo "Hello World!" > index.html
-sudo cp index.html /etc/www/html/
+sudo cp index.html /etc/html/
 
 echo "server {
 	listen     80 default_server;
 	listen     [::]:80 default_server;
-	root       /etc/www/html;
+	root       /etc/html;
 	index      index.html index.htm;
 } > /etc/nginx/sites-available/default"
 services nginx restart
