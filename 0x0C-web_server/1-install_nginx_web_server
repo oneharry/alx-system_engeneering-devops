@@ -13,5 +13,5 @@ echo "server {
 	listen     [::]:80 default_server;
 	root       /etc/html;
 	index      index.html index.htm;
-} > /etc/nginx/sites-available/default"
+}" > /etc/nginx/sites-available/default
 services nginx restart
