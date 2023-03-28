@@ -1,7 +1,8 @@
 # install and configure Nginx server
 
 exec { 'nginx':
-    command => ['apt-get update', 'apt-get install -y nginx'],
+    provider => shell;
+    command  => ['apt-get update', 'apt-get install -y nginx'],
 }
 
 file { '/var/www/root':
@@ -25,7 +26,11 @@ file {'default':
 	    index index.html index.htm;
 
 	    location /redirect_me {
-		    return 301 http://test.com
+		    return 301 http://test.com;
 	    }
     }'
+}
+exec {'service nginx':
+    provider => shell;
+    command  => ['service nginx restart'];
 }
