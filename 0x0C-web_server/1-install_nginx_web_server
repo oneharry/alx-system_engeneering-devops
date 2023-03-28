@@ -2,8 +2,8 @@
 # Install nginx listening on port 80 on a server web-01
 # curl request shoul return a page with string "Hello World"
 
-sudo apt update
-sudo apt -y install nginx
+sudo apt-get update
+sudo apt-get install -y nginx
 mkdir /etc/html
 echo "Hello World!" > index.html
 cp index.html /etc/html/
