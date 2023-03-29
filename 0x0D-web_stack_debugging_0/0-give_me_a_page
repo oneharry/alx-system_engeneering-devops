@@ -1,1 +1,3 @@
+#!/usr/bin/env bash
+# Debug the webstack to serve the desired page
 service apache2 start
