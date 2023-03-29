@@ -15,13 +15,11 @@ echo "server {
 	index index.html index.htm;
 	
 	location /redirect_me {
-		return 301 http://test.com;
+		return 301 https://www.example.com;
 	}
 
-	location /404 {
-		internal;
-		root /var/www/root;
-		rewrite ^(.*)$ 404_error.html last;
+	location / {
+		return 404 "Ceci n"'"est pas une page";
 	}
 }" > /etc/nginx/sites-available/default
 service nginx restart
