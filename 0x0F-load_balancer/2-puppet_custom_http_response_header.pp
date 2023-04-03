@@ -5,15 +5,15 @@ exec {'add_header':
     command  => 'sudo apt-get update',
 }
 -> package {'nginx':
-    ensure => 'present'
+    ensure => present
 }
 -> file_line {
     ensure => present,
     path   => 'etc/nginx/sites-available/default',
     line   => "\tlocation / {
 	    add_header X-Served-By ${hostname};
-    }",
-    match  => 'server_name _;'
+    },
+    match  => '^\server_name _;'
 
 }
 -> exec {'restart nginx':
