@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# install and configure HAproxy load balancer on a server lb-01
+# Using roundrobin balancing algorithm
+# HAproxy can bemanaged via an init script
+
+sudo apt-get install --no-install-recommends software-properties-common
+add-apt-repository ppa:vbernat/haproxy-2.6
+apt-get install haproxy=2.6.\*
+
