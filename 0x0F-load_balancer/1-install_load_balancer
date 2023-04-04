@@ -4,12 +4,13 @@
 # HAproxy can bemanaged via an init script
 
 sudo apt-get -y install --no-install-recommends software-properties-common
-sudo add-apt-repository -y ppa:vbernat/haproxy-2.6
+sudo add-apt-repository -y ppa:vbernat/haproxy-2.0
 sudo apt-get update
-sudo apt-get -y install haproxy=2.6.\*
+sudo apt-get install haproxy=2.0.\*
 
-echo "ENABLED=1" >> /etc/default/haproxy
-cat > /etc/haproxy/haproxy.cfg <<EOF
+#echo "ENABLED=1" >> /etc/default/haproxy
+sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.old
+echo "
 global
     log /dev/log	local0
     log /dev/log	local1 notice
@@ -32,12 +33,13 @@ defaults
 
 frontend http-in
     mode http
-    bind :80
+    bind *:80
     default_backend servers
 
 backend servers
     balance roundrobin
     server 148553-web-01 34.224.94.161 check
-    server 148553-web-02 35.153.232.246 check
-EOF
+    server 148553-web-02 35.153.232.246 check" > haproxy.cfg
+
+sudo cp haproxy.cfg /etc/haproxy/haproxy.cfg
 sudo service haproxy start

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # configure Nginx with a custom header: X-Served_by = server's hostname
 
-sudo sed -i "s/server_name _;/add_header X-Served-By $HOSTNAME;/" /etc/nginx/sites-available/default
+sudo sed -i "s/location / {/location / {\n\tadd_header X-Served-By $HOSTNAME;/" /etc/nginx/sites-available/default
 sudo service nginx restart
