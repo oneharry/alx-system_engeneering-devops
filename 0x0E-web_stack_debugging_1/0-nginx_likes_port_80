@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# install nginx, running and listening on port *0 of all servers active IPv4
+
+
+sudo docker run -p 80:80 -d nginx
