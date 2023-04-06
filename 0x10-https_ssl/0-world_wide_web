@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Accepts arguments. Audit the domain of all subdomains
+
+main () {
+
+}
