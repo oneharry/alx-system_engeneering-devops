@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# install nginx, running and listening on port *0 of all servers active IPv4
-
-
-sudo docker run -p 80:80 -d nginx
+# Nginx running and listening on port *0 of all servers active IPv4sudo
+sudo sed -i "s+include /etc/nginx/sites-enabled/*;+include /etc/nginx/sites-available/*;\n\tinclude /etc/nginx/sites-enabled/*;+" /etc/nginx/nginx.conf
+sudo service restart
