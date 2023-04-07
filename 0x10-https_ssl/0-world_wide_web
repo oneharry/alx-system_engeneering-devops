@@ -1,6 +1,32 @@
 #!/usr/bin/env bash
 # Accepts arguments. Audit the domain of all subdomains
 
-main () {
+audit_domain () {
+	if [ -z "$1" ]
+        then
+		exit 1
+	fi
+
+	if [ "$1" ]
+	then
+		if [ "$2" ]
+		then
+			subdomains=("$2")
+		else
+			subdomains=("www" "lb-01" "web-01" "web-02")
+		fi
+
+
+		for sub in "${subdomains[@]}"
+		do
+			info=$(dig "$sub.$1" +nostats +noall +answer | awk "{print $1,$4}")
+			addr=$(echo "$info" | awk "{print $1}")
+			type=$(echo "$info" | awk "{print $2}")
+
+			echo "The subdomain $sub is a $type record and points to $addr"
+		done
+	fi
 
 }
+
+audit_domain "$1" "$2"
