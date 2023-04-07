@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# accepts 2 arguments: domain & optional subdomain name
+# outputs the audit using th passed in args
+
+main () {
+
+}

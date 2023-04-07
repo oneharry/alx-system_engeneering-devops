@@ -10,8 +10,8 @@ exec {'update env':
 -> file_line {'add_header':
     ensure => present,
     path   => '/etc/nginx/sites-available/default',
-    line   => "   location / {
-    add_header X-Served-By ${hostname};",
+    line   => "    location / {
+	    add_header X-Served-By ${hostname};",
     match  => '^\tlocation / {',
 
 }
