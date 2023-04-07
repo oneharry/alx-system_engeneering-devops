@@ -2,11 +2,6 @@
 # Accepts arguments. Audit the domain of all subdomains
 
 audit_domain () {
-	if [ -z "$1" ]
-        then
-		exit 1
-	fi
-
 	if [ "$1" ]
 	then
 		if [ "$2" ]
@@ -19,11 +14,10 @@ audit_domain () {
 
 		for sub in "${subdomains[@]}"
 		do
-			info=$(dig "$sub.$1" +nostats +noall +answer | awk "{print $1,$4}")
-			addr=$(echo "$info" | awk "{print $1}")
-			type=$(echo "$info" | awk "{print $2}")
+			typ=$(dig "$sub.$1" | grep -A1 'ANSWER SECTION' | awk '{print $4}' | tail -1)
+			addr=$(dig "$sub.$1" | grep -A1 'ANSWER SECTION' | awk '{print $5}' | tail -1)
 
-			echo "The subdomain $sub is a $type record and points to $addr"
+			echo "The subdomain $sub is a $typ record and points to $addr"
 		done
 	fi
 
