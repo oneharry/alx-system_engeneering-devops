@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Nginx running and listening on port *0 of all servers active IPv4sudo
 sudo sed -i "s/sites-enabled/sites-available/" /etc/nginx/nginx.conf
-sudo nginx -s reload
+sudo service nginx restart
