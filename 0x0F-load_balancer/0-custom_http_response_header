@@ -1,5 +1,16 @@
 #!/usr/bin/env bash
 # configure Nginx with a custom header: X-Served_by = server's hostname
+sudo apt-get -y update
+sudo apt-get -y install
+
+sudo mkdir -p /var/www/html
+sudo echo "Hello World!" > index.html
+sudo cp index.html /var/www/html/index.html
+sudo rm index.html
+sudo echo "Ceci n'est pas une page" > 404.html
+sudo cp 404.html /var/www/html/404.html
+sudo rm 404.html
 
 sudo sed -i "s+location / {+location / {\n\t\tadd_header X-Served-By $HOSTNAME;+" /etc/nginx/sites-available/default
+
 sudo service nginx restart
