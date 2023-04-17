@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Takes users name, sun the whoami command with user
+
+if [ "$1" ]
+then
+    su - "$1" -c whoami
+fi
