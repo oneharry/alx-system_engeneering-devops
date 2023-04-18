@@ -3,5 +3,5 @@
 
 if [ "$1" ]
 then
-    su - "$1" -c whoami
+    su "$1" whoami
 fi
