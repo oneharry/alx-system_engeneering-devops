@@ -40,4 +40,4 @@ symbolic-links=0
 server-id       =1
 
 #define the location of MYSQL's binary log file
-log-bin         =/var/log/mysql/mysql-bin.log
+log-bin         =/var/log/mysql/log-bin.log
