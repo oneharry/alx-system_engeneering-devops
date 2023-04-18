@@ -37,10 +37,10 @@ log-error       = /var/log/mysql/error.log
 symbolic-links=0
 
 #define identifier to distinguish servers in replication setup
-server-id       = 1
+server-id       =1
 
 #define the location of MYSQL's binary log file
-log_bin         = /var/log/mysql/mysql-bin.log
+log_bin         =/var/log/mysql/mysql-bin.log
 
 #define the source database
-binlog_do_db    = tyrell_corp
+binlog_do_db    =tyrell_corp
