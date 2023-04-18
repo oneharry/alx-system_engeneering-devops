@@ -40,7 +40,4 @@ symbolic-links=0
 server-id       =1
 
 #define the location of MYSQL's binary log file
-log_bin         =/var/log/mysql/mysql-bin.log
-
-#define the source database
-binlog_do_db    =tyrell_corp
+log-bin         =/var/log/mysql/mysql-bin.log
