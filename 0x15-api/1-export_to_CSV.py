@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 """
 Module uses REST API to return information about employee bi ID
+Export to csv file
 """
+import csv
 import requests
 import sys
 
@@ -12,15 +14,10 @@ if __name__ == '__main__':
         url = 'https://jsonplaceholder.typicode.com'
         req = requests.get('{}/users/{}'.format(url, emp_id))
         tasks_req = requests.get('{}/todos?userId={}'.format(url, emp_id))
-        name = req.json()['name']
+        username = req.json()['username']
         tasks = tasks_req.json()
-        all_tasks = len(tasks)
-        comp_tasks = 0
-        for task in tasks:
-            if task['completed']:
-                comp_tasks += 1
-        print("Employee {} is done with tasks({}/{}):"
-              .format(name, comp_tasks, all_tasks))
-        for task in tasks:
-            if task['completed']:
-                print("     {}".format(task['title']))
+        with open("{}.csv".format(emp_id), 'w', encoding='UTF8') as f:
+            writer = csv.writer(f, quoting=csv.QUOTE_ALL)
+            for t in tasks:
+                data = [t['userId'], username, t['completed'], t['title']]
+                writer.writerow(data)
