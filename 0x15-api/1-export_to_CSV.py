@@ -14,10 +14,11 @@ if __name__ == '__main__':
         url = 'https://jsonplaceholder.typicode.com'
         req = requests.get('{}/users/{}'.format(url, emp_id))
         tasks_req = requests.get('{}/todos?userId={}'.format(url, emp_id))
-        username = req.json()['username']
+        username = req.json().get('username')
         tasks = tasks_req.json()
         with open("{}.csv".format(emp_id), 'w', encoding='UTF8') as f:
             writer = csv.writer(f, quoting=csv.QUOTE_ALL)
             for t in tasks:
-                data = [t['userId'], username, t['completed'], t['title']]
+                data = [t.get('userId'), username, t.get('completed'),
+                        t.get('title')]
                 writer.writerow(data)
