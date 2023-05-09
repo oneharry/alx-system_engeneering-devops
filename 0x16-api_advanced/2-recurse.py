@@ -14,12 +14,12 @@ def recurse(subreddit, hot_list=[], after=None):
     response = requests.get(url, headers=headers,
                             params=params, allow_redirects=False)
     if response.status_code == 200:
-        data = response.json()
-        if not data.get('data').get('children'):
-            return hot_list
-        for post in data.get('data').get('children'):
-            hot_list.append(post.get('data').get('title'))
-        after = data.get('data').get('after')
-        return recurse(subreddit, hot_list, after)
+        data = response.json().get('data')
+        for ch in data.get('children'):
+            hot_list.append(ch.get('data').get('title'))
+        after = data.get('after')
+        if after:
+            return recurse(subreddit, hot_list, after)
+        return hot_list
     else:
         return None
