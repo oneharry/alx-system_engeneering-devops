@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+master_pid=$(cat /run/gunicorn.pid)
+worker_pids=$(pgrep -P "${master_pid}")
+
+kill -HUP "${master_pid}"
+
+for pid in ${worker_pids}; do
+    while ps -p "${pid}" > /dev/null; do
+	 sleep 1
+    done
+done

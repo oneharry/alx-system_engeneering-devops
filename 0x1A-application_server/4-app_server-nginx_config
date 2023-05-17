@@ -67,12 +67,12 @@ server {
                 proxy_pass http://localhost:5000/airbnb-onepage/;
 	}
 
-	location ~* ^/airbnb-dynamic/number_odd_or_even/(\d+)$ {
+	location ~ /airbnb-dynamic/number_odd_or_even/(\d+)$ {
 		proxy_pass http://localhost:5001/$1;
 	{
 
 	location /api/ {
-		proxy_pass http://localhost:5002/api/;
+		proxy_pass http://localhost:5002/api;
 	}
 
         location / {
