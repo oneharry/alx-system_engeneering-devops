@@ -71,6 +71,9 @@ server {
 		proxy_pass http://localhost:5001/$1;
 	{
 
+	location /api/ {
+		proxy_pass http://localhost:5002/api/;
+	}
 
         location / {
             root /var/www/html;

@@ -69,12 +69,18 @@ server {
 
 	location ~* ^/airbnb-dynamic/number_odd_or_even/(\d+)$ {
 		proxy_pass http://localhost:5001/$1;
-	{
+	}
 
+	location /api/ {
+		proxy_pass http://localhost:5002/api/;
+	}
+
+	location /static/ {
+		proxy_pass http://localhost:5003;
+	}
 
         location / {
-            root /var/www/html;
-            add_header X-Served-By 148553-web-01;
+        	proxy_pass http://localhost:5003/2-hbnb;
         }
 
 	# pass PHP scripts to FastCGI server
