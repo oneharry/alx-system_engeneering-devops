@@ -68,6 +68,7 @@ server {
 	}
 
 	location ~ /airbnb-dynamic/number_odd_or_even/(\d+)$ {
+		include proxy_params;
 		proxy_pass http://localhost:5001/number_odd_or_even/$1;
 	{
 
