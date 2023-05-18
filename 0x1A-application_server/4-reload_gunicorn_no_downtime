@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
-master_pid=$(cat /run/gunicorn.pid)
-worker_pids=$(pgrep -P "${master_pid}")
+#Reload gunicorn without downtime
+pid=$(pgrep -f "gunicorn")
 
-kill -HUP "${master_pid}"
-
-for pid in ${worker_pids}; do
-    while ps -p "${pid}" > /dev/null; do
-	 sleep 1
-    done
-done
+kill -HUP "$pid"
