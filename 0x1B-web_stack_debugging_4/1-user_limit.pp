@@ -1,11 +1,11 @@
 #new user can login and open file
 exec {'soft':
-    command  => 'sed -i "holberton soft nofile/s/4/4000/" /etc/security/limits.conf',
-    provider => 'shell',
+    command => 'sed -i "holberton soft nofile/s/4/4000/" /etc/security/limits.conf',
+    path    => '/usr/local/bin/:/bin/',
 
 }
 
 exec {'hard':
-    command  => 'sed -i "holberton soft nofile/s/5/5000/" /etc/security/limits.conf',
-    provider => 'shell',
+    command => 'sed -i "holberton hard nofile/s/5/5000/" /etc/security/limits.conf',
+    path    => '/usr/local/bin/:/bin/',
 }
