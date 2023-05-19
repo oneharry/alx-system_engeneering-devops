@@ -1,10 +1,5 @@
 exec {'soft':
-    command => 'sed -i "s/15/5000/" /etc/default/nginx',
-    path    => '/usr/local/bin/:/bin/',
+    command => 'sed -i "s/15/4096/" /etc/default/nginx && service nginx restart',
+    provider    => 'shell',
 
-} ->
-
-exec {'restart-nginx':
-    command => 'nginx restart',
-    path    => '/etc/init.d/',
 }
